@@ -1,27 +1,24 @@
-        function checkFortune() {
-            var colour = document.getElementById('colour-select').value;
-            var number = parseInt(document.getElementById('number-input').value, 10);
-            var result = "凶"; // デフォルトの値
+// カウンターの初期値を設定
+let count = 0;
 
-            if (colour === "黒" && number === 0) {
-                result = "小吉";
-            } else if (colour === "黒" && number === 1) {
-                result = "中吉";
-            } else if (colour === "黒" && number === 2) {
-                result = "凶";
-            } else if (colour === "白" && number === 0) {
-                result = "中吉";
-            } else if (colour === "白" && number === 1) {
-                result = "中吉";
-            } else if (colour === "白" && number === 2) {
-                result = "大凶";
-            } else if (colour === "オレンジ" && number === 0) {
-                result = "凶";
-            } else if (colour === "オレンジ" && number === 1) {
-                result = "大吉";
-            } else if (colour === "オレンジ" && number === 2) {
-                result = "中吉";
-            }
-
-            document.getElementById('result-output').innerText = "あなたの今週の運勢は【" + result + "】です";
-        }
+// DOMの読み込みが完了したら実行
+window.onload = function() {
+  const resultDiv = document.getElementById('js-result');
+  
+  // カウンター表示用の要素を作成
+  const counterDisplay = document.createElement('p');
+  counterDisplay.id = 'counter';
+  counterDisplay.textContent = '回数: 0';
+  resultDiv.appendChild(counterDisplay);
+  
+  // ボタンを作成
+  const incrementButton = document.createElement('button');
+  incrementButton.textContent = 'カウントアップ';
+  resultDiv.appendChild(incrementButton);
+  
+  // ボタンクリック時の処理
+  incrementButton.addEventListener('click', function() {
+    count++;
+    counterDisplay.textContent = '回数: ' + count;
+  });
+};
